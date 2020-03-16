@@ -85,6 +85,13 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'This Article is to Test my JavaScript',
+    date: 'Mar 16, 2020',
+    firstParagraph: 'If you are reading this, my code works.',
+    secondParagraph: 'Since my code is working, You should also press the expand button to close this article.',
+    thirdParagraph: '(target).classList.toggle (class) will toggle a class on and off'
   }
 ];
 
@@ -98,12 +105,82 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+*/
 
-  Hint: You will need to use createElement more than once here!
+// div
+
+
+let container = document.querySelector('.articles');
+
+function cardCreator(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  // elements
+  const article = document.createElement('div');
+  const articleTitle = document.createElement('h2');
+  const articleDate = document.createElement('p');
+  const firstPara= document.createElement('p');
+  const secondPara= document.createElement('p');
+  const thirdPara= document.createElement('p');
+  const expand = document.createElement('span');
+
+  // classes
+  article.classList.add('article');
+  articleTitle.classList.add('date');
+  firstPara.classList.add('para');
+  secondPara.classList.add('para');
+  thirdPara.classList.add('para');
+  expand.classList.add('expandButton');
+
+
+  //append
+  article.appendChild(articleTitle);
+  article.appendChild(articleDate);
+  article.appendChild(firstPara);
+  article.appendChild(secondPara);
+  article.appendChild(thirdPara);
+  article.appendChild(expand);
+
+  //text
+  articleTitle.textContent = title;
+  articleDate.textContent = date;
+  firstPara.textContent = firstParagraph;
+  secondPara.textContent = secondParagraph;
+  thirdPara.textContent = thirdParagraph;
+  expand.textContent ='\u25BC';
+
+  //Events
+  expand.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+    firstPara.classList.toggle('para');
+    secondPara.classList.toggle('para');
+    thirdPara.classList.toggle('para');
+  })
+  return article;
+}
+ 
+ let newCont = data.map( (title, date, firstParagraph, secondParagraph,thirdParagraph) => {
+  let newArt = cardCreator(title, date, firstParagraph,secondParagraph,thirdParagraph);
+  
+  return newArt
+ });
+
+ data.forEach(artData => {
+  container.appendChild(cardCreator(artData.title, artData.date, artData.firstParagraph, artData.secondParagraph, artData.thirdParagraph))
+})
+
+let firstArticle = cardCreator(artData);
+let secondArticle = cardCreator(artData);
+let thirdArticle = cardCreator(artData);
+
+container.appendChild(firstArticle);
+container.appendChild(secondArticle);
+container.appendChild(thirdArticle);
+ 
+  /* Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
 
   Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+
 
   Step 3: return the entire component.
 

@@ -153,6 +153,7 @@ function cardCreator(title, date, firstParagraph, secondParagraph, thirdParagrap
     firstPara.classList.toggle('para');
     secondPara.classList.toggle('para');
     thirdPara.classList.toggle('para');
+    preventDefault();
   })
   return article;
 }
@@ -167,13 +168,13 @@ function cardCreator(title, date, firstParagraph, secondParagraph, thirdParagrap
   container.appendChild(cardCreator(artData.title, artData.date, artData.firstParagraph, artData.secondParagraph, artData.thirdParagraph))
 })
 
-let firstArticle = cardCreator(artData);
-let secondArticle = cardCreator(artData);
-let thirdArticle = cardCreator(artData);
+// let firstArticle = cardCreator(artData);
+// let secondArticle = cardCreator(artData);
+// let thirdArticle = cardCreator(artData);
 
-container.appendChild(firstArticle);
-container.appendChild(secondArticle);
-container.appendChild(thirdArticle);
+// container.appendChild(firstArticle);
+// container.appendChild(secondArticle);
+// container.appendChild(thirdArticle);
  
   /* Hint: You will need to use createElement more than once here!
 
